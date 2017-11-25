@@ -1,0 +1,18 @@
+@(aps : List[Airline])
+
+<html>
+
+    <head>
+        <title>All Airlines</title>
+    </head>
+    <body>
+
+        <h1>All Airlines</h1>
+
+        @for(airline <- aps){
+            <a href="#">@airline.airlineName</a>
+            <p>id: @airline.id</p>
+        }
+
+    </body>
+</html>
