@@ -1,0 +1,19 @@
+@(airportForm : Form[Airport])
+@import helper._
+<html>
+
+    <head>
+        <title>Create Airport</title>
+    </head>
+    <body>
+
+        <h1>Create an airport</h1>
+        @helper.form(action = routes.AirportController.save()){
+            @helper.inputText(airportForm("id"))
+            @helper.inputText(airportForm("Name"))
+            @helper.inputText(airportForm("Location"))
+            <input type ="Submit" value="Create Airport">
+        }
+
+    </body>
+</html>
