@@ -1,0 +1,18 @@
+@(aps : List[Customer])
+
+<html>
+
+    <head>
+        <title>All Customers</title>
+    </head>
+    <body>
+
+        <h1>All Customers</h1>
+
+        @for(customer <- aps){
+            <a href="#"> @customer.cId</a>
+            <p> First Name: @customer.fName  @customer.lName</p>
+        }
+
+    </body>
+</html>

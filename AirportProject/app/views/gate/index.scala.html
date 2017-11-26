@@ -1,0 +1,18 @@
+@(aps : List[Gate])
+
+<html>
+
+    <head>
+        <title>All Gates</title>
+    </head>
+    <body>
+
+        <h1>All Gates</h1>
+
+        @for(gate <- aps){
+            <a href="#">@gate.gateId</a>
+            <p>id: @gate.gateId</p>
+        }
+
+    </body>
+</html>

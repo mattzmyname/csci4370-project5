@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Gate {
+public class Gate extends Model{
 
     @Id
     public Integer gateId;
@@ -13,6 +13,6 @@ public class Gate {
     public Integer airlineId;
     public Integer airportId;
 
-    public static Model.Finder<Integer,Gate> find = new Model.Finder<>(Gate.class);//Finder<PK,class>
+    public static Finder<Integer,Gate> find = new Model.Finder<>(Gate.class);//Finder<PK,class>
 
 }

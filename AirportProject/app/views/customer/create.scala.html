@@ -1,0 +1,18 @@
+@(customerForm : Form[Customer])
+@import helper._
+<html>
+
+    <head>
+        <title>Create Customer</title>
+    </head>
+    <body>
+
+        <h1>Create an customer</h1>
+        @helper.form(action = routes.CustomerController.save()){
+            @helper.inputText(customerForm("First Name"))
+           
+            <input type ="Submit" value="Create Customer">
+        }
+
+    </body>
+</html>

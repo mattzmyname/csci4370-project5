@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Flight {
+public class Flight extends Model{
 
     @Id
     public Integer id;
@@ -17,6 +17,6 @@ public class Flight {
     public String arrivalCity;
     public Integer gateId;
 
-    public static Model.Finder<Integer,Flight> find = new Model.Finder<>(Flight.class);//Finder<PK,class>
+    public static Finder<Integer,Flight> find = new Model.Finder<>(Flight.class);//Finder<PK,class>
 
 }

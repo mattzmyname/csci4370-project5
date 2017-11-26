@@ -25,9 +25,29 @@ POST    /airlines/edit              controllers.AirlineController.update()
 POST    /airlines/create            controllers.AirlineController.save()
 GET     /airlines/delete/:id        controllers.AirlineController.destroy(id : Integer)
 
+GET     /customers                   controllers.CustomerController.index()
+GET     /customers/create            controllers.CustomerController.create()
+GET     /customers/:id               controllers.CustomerController.show(id : Integer)
+GET     /customers/edit/:id          controllers.CustomerController.edit(id : Integer)
+POST    /customers/edit              controllers.CustomerController.update()
+POST    /customers/create            controllers.CustomerController.save()
+GET     /customers/delete/:id        controllers.CustomerController.destroy(id : Integer)
 
+GET     /flights                   controllers.FlightController.index()
+GET     /flights/create            controllers.FlightController.create()
+GET     /flights/:id               controllers.FlightController.show(id : Integer)
+GET     /flights/edit/:id          controllers.FlightController.edit(id : Integer)
+POST    /flights/edit              controllers.FlightController.update()
+POST    /flights/create            controllers.FlightController.save()
+GET     /flights/delete/:id        controllers.FlightController.destroy(id : Integer)
 
-
+GET     /gates                   controllers.GateController.index()
+GET     /gates/create            controllers.GateController.create()
+GET     /gates/:id               controllers.GateController.show(id : Integer)
+GET     /gates/edit/:id          controllers.GateController.edit(id : Integer)
+POST    /gates/edit              controllers.GateController.update()
+POST    /gates/create            controllers.GateController.save()
+GET     /gates/delete/:id        controllers.GateController.destroy(id : Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
