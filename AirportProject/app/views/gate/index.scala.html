@@ -4,15 +4,42 @@
 
     <head>
         <title>All Gates</title>
+        <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;    
+        }
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+        table#t01 tr:nth-child(odd) {
+            background-color:#fff;
+        }
+    </style>
     </head>
     <body>
 
-        <h1>All Gates</h1>
+        <h1>All Gates</h1> 
 
+
+        <table style="width:100%">
+            <tr> <b>
+                <th> Terminal ID: </th>
+                <th> Airline ID: </th>
+                <th> Airport ID: </th>
+            </b></tr>
         @for(gate <- aps){
-            <a href="#">@gate.gateId</a>
-            <p>Terminalid: @gate.terminalId</p>
+            <tr>
+                <td> <a href="#">@gate.gateId</a> </td>
+                <td> <p> @gate.terminalId</p> </td>
+                <td> <p> @gate.airportId</p> </td>
+                <td> <p> @gate.airlineId</p> </td>
+            </tr>
         }
-
+        </table>
     </body>
 </html>
