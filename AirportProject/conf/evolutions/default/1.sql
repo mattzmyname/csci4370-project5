@@ -4,10 +4,10 @@
 # --- !Ups
 
 create table airline (
-  airport_id                    integer auto_increment not null,
+  id                            integer auto_increment not null,
   airline_name                  varchar(255),
-  id                            integer,
-  constraint pk_airline primary key (airport_id)
+  airport_id                    integer,
+  constraint pk_airline primary key (id)
 );
 
 create table airport (

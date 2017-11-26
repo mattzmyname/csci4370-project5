@@ -10,7 +10,8 @@
         <h1>All Airports</h1>
 
         @for(airport <- aps){
-            <a href="#">@airport.name</a>
+            <a href="#">@airport.id</a>
+            <p>Name: @airport.name</p>
             <p>Location: @airport.location</p>
         }
 

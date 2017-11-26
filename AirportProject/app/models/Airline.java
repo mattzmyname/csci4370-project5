@@ -1,4 +1,4 @@
-package models;
+	package models;
 
 
 import com.avaje.ebean.Model;
@@ -9,8 +9,8 @@ import javax.persistence.Id;
 public class Airline extends Model{
 
     public String airlineName;
-    public Integer id;
     @Id
+    public Integer id;
     public Integer airportId;
 
     public static Finder<Integer,Airline> find = new Model.Finder<>(Airline.class);//Finder<PK,class>
