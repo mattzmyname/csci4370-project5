@@ -1,0 +1,53 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+# An example controller showing how to use dependency injection
+GET     /count                      controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                    controllers.AsyncController.message
+
+GET     /airports                   controllers.AirportController.index()
+GET     /airports/create            controllers.AirportController.create()
+GET     /airports/:id               controllers.AirportController.show(id : Integer)
+GET     /airports/edit/:id          controllers.AirportController.edit(id : Integer)
+POST    /airports/edit              controllers.AirportController.update()
+POST    /airports/create            controllers.AirportController.save()
+GET     /airports/delete/:id        controllers.AirportController.destroy(id : Integer)
+
+GET     /airlines                   controllers.AirlineController.index()
+GET     /airlines/create            controllers.AirlineController.create()
+GET     /airlines/:id               controllers.AirlineController.show(id : Integer)
+GET     /airlines/edit/:id          controllers.AirlineController.edit(id : Integer)
+POST    /airlines/edit              controllers.AirlineController.update()
+POST    /airlines/create            controllers.AirlineController.save()
+GET     /airlines/delete/:id        controllers.AirlineController.destroy(id : Integer)
+
+GET     /customers                   controllers.CustomerController.index()
+GET     /customers/create            controllers.CustomerController.create()
+GET     /customers/:id               controllers.CustomerController.show(id : Integer)
+GET     /customers/edit/:id          controllers.CustomerController.edit(id : Integer)
+POST    /customers/edit              controllers.CustomerController.update()
+POST    /customers/create            controllers.CustomerController.save()
+GET     /customers/delete/:id        controllers.CustomerController.destroy(id : Integer)
+
+GET     /flights                   controllers.FlightController.index()
+GET     /flights/create            controllers.FlightController.create()
+GET     /flights/:id               controllers.FlightController.show(id : Integer)
+GET     /flights/edit/:id          controllers.FlightController.edit(id : Integer)
+POST    /flights/edit              controllers.FlightController.update()
+POST    /flights/create            controllers.FlightController.save()
+GET     /flights/delete/:id        controllers.FlightController.destroy(id : Integer)
+
+GET     /gates                   controllers.GateController.index()
+GET     /gates/create            controllers.GateController.create()
+GET     /gates/:id               controllers.GateController.show(id : Integer)
+GET     /gates/edit/:id          controllers.GateController.edit(id : Integer)
+POST    /gates/edit              controllers.GateController.update()
+POST    /gates/create            controllers.GateController.save()
+GET     /gates/delete/:id        controllers.GateController.destroy(id : Integer)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

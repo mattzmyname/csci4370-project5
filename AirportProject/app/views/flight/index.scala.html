@@ -1,0 +1,17 @@
+@(aps : List[Flight])
+
+<html>
+
+    <head>
+        <title>All Flights</title>
+    </head>
+    <body>
+
+        <h1>All Flights</h1>
+
+        @for(flight <- aps){
+            <a href="#">@flight.id</a>
+        }
+
+    </body>
+</html>

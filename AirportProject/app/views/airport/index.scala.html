@@ -1,0 +1,19 @@
+@(aps : List[Airport])
+
+<html>
+
+    <head>
+        <title>All Airports</title>
+    </head>
+    <body>
+
+        <h1>All Airports</h1>
+
+        @for(airport <- aps){
+            <a href="#">@airport.id</a>
+            <p>Name: @airport.name</p>
+            <p>Location: @airport.location</p>
+        }
+
+    </body>
+</html>

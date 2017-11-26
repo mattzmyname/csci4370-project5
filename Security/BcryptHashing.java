@@ -19,6 +19,7 @@ public class BcryptHashing
 	
     public static void main(String[] args) throws NoSuchAlgorithmException, FileNotFoundException, IOException
     {
+    	//runSQLQuery("Select * from userpwd");
     	pullUserDB();
     	//sample
     	/*
@@ -84,6 +85,7 @@ public class BcryptHashing
         pushUserDB();
         
     }
+    //pulls from text file. Pulling from SQL is method runSQLQuery
     private static void pullUserDB() throws FileNotFoundException, IOException{
     	try{
     	FileInputStream fstream = new FileInputStream("passwddb.txt");
@@ -110,7 +112,9 @@ public class BcryptHashing
     		for (Entry<String,String> pair : listUsers.entrySet()){
                 //iterate over the pairs
                 writePass.println(pair.getKey()+" "+pair.getValue());
-            }
+                //runSQLUpdate("If Not Exists(select * from userpwd where Username='"+pair.getKey()+"')Begin insert into userpwd (Username, passwordhash) values ('"+pair.getKey()+"','"+pair.getValue()+"')End");
+                runSQLUpdate("insert into userpwd (Username, passwordhash)Select '"+pair.getKey()+"','"+pair.getValue()+"' Where not exists(select * from userpwd where Username='"+pair.getKey()+"')");
+    		}
     		writePass.close();
     	}catch (Exception e){
       System.err.println("Error: " + e.getMessage());
@@ -143,9 +147,47 @@ public class BcryptHashing
         }
         else
         {
-        	System.out.println("User or password is incorrect1.");
+        	System.out.println("User or password is incorrect.");
         	return false;
         }
         
     }
-}
+    
+    public static void runSQLQuery(String cmd )
+    {
+    	try{
+    		Class.forName("com.mysql.jdbc.Driver");
+
+    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/sonoo","root","root");
+    		//here sonoo is the database name, root is the username and root is the password
+    		Statement stmt=con.createStatement();
+    		
+    		ResultSet rs=stmt.executeQuery(cmd);
+
+    		while(rs.next())
+    		listUsers.put(rs.getString(1),rs.getString(2));
+    		
+    		
+    		con.close();
+
+    		}catch(Exception e){ System.out.println(e);}
+
+    		}
+    
+    public static void runSQLUpdate(String cmd )
+    {
+    	try{
+    		Class.forName("com.mysql.jdbc.Driver");
+
+    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/sonoo","root","root");
+    		//here sonoo is the database name, root is the username and root is the password
+    		Statement stmt=con.createStatement();
+    		
+    		int result=stmt.executeUpdate(cmd);  
+    		System.out.println(result+" records affected"); 
+    		con.close();
+
+    		}catch(Exception e){ System.out.println(e);}
+
+    		}
+    }
