@@ -4,16 +4,46 @@
 
     <head>
         <title>All Airlines</title>
+        <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;    
+        }
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+        table#t01 tr:nth-child(odd) {
+            background-color:#fff;
+        }
+    </style>
+        
+        
     </head>
     <body>
 
         <h1>All Airlines</h1>
 
+        \
+
+        <table style="width:100%">
+             <tr> <b>
+                <th> Airline Name: </th>
+                <th> id: </th>
+                <th> AirportID: </th>
+            </b> </tr>
+            
         @for(airline <- aps){
-            <a href="#">@airline.airlineName</a>
-            <p>id: @airline.id</p>
-            <p>AirportID: @airline.airportId</p>
+            <tr>
+                <td> <a href="#">@airline.airlineName</a> </td>
+                <td> <p> @airline.id</p> </td>
+                <td> <p> @airline.airportId</p> </td>
+            </tr>
         }
 
+        </table>
     </body>
 </html>

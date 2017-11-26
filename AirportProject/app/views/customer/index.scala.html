@@ -4,18 +4,45 @@
 
     <head>
         <title>All Customers</title>
+        <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;    
+        }
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+        table#t01 tr:nth-child(odd) {
+            background-color:#fff;
+        }
+    </style>
     </head>
-    <body>
+    <body> 
 
         <h1>All Customers</h1>
 
+                <table style="width:100%">
+            <tr>
+                <th><b> First Name: </b></th>
+                <th><b> Last Name: </b></th>
+                <th><b> Customer City: </b></th>
+                <th><b> Flight Number: </b></th>
+                <th><b> CustomerID: </b></th>
+            </tr>
         @for(customer <- aps){
-            <a href="#"> @customer.cId</a>
-            <p> First Name: @customer.fName  @customer.lName</p>
-            <p> Customer City: @customer.cCity</p>
-            <p>Flight Number: @customer.flightNo</p>
-            <p>CustomerID: @customer.cId</p>
+            <tr>
+                    <td> <a href="#"> @customer.cId</a> </td>
+                    <td> <p> @customer.fName</p> </td>  
+                    <td> <p> @customer.lName</p> </td>
+                    <td> <p> @customer.cCity</p> </td>
+                    <td> <p> @customer.flightNo</p> </td>
+                    <td> <p> @customer.cId</p> </td>
+            </tr>
         }
-
+        </table>
     </body>
 </html>
