@@ -11,7 +11,12 @@
 
         @for(flight <- aps){
             <a href="#">@flight.id</a>
-        }
+            <p> Airline ID: @flight.airlineId  </p>
+            <p> Departure Time: @flight.departureTime  </p>
+            <p> Arrival Time: @flight.arrivalTime  </p>
+            <p> Departure City: @flight.departureCity  </p>
+            <p> Arrival City: @flight.arrivalCity  </p>
+            <p> Gate ID: @flight.gateId  </p>        }
 
     </body>
 </html>
