@@ -16,7 +16,6 @@ public class Airport extends Model{
 
 
     @Id
-    @ManyToOne
     public Integer id;
     public String name;
     public String location;
