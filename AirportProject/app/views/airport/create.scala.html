@@ -8,7 +8,7 @@
     <body>
 
         <h1>Create an airport</h1>
-        @helper.form(action = routes.AirportController.save()){
+            @helper.form(action = routes.AirportController.save()){
             @helper.inputText(airportForm("id"))
             @helper.inputText(airportForm("Name"))
             @helper.inputText(airportForm("Location"))

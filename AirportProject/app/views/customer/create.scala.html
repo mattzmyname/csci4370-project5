@@ -9,11 +9,11 @@
 
         <h1>Create an customer</h1> 
             @helper.form(action = routes.CustomerController.save()){
+            @helper.inputText(customerForm("CustomerID"))
             @helper.inputText(customerForm("First Name"))
             @helper.inputText(customerForm("Last Name"))
             @helper.inputText(customerForm("Customer City"))
             @helper.inputText(customerForm("Flight Number"))
-            @helper.inputText(customerForm("CustomerID"))
            
             <input type ="Submit" value="Create Customer">
         }
