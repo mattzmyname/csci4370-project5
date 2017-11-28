@@ -27,11 +27,12 @@
 
                 <table style="width:100%">
             <tr>
+                <th><b> Customer ID: </b></th>
                 <th><b> First Name: </b></th>
                 <th><b> Last Name: </b></th>
                 <th><b> Customer City: </b></th>
                 <th><b> Flight Number: </b></th>
-                <th><b> CustomerID: </b></th>
+                
             </tr>
         @for(customer <- aps){
             <tr>
@@ -40,7 +41,7 @@
                     <td> <p> @customer.lName</p> </td>
                     <td> <p> @customer.cCity</p> </td>
                     <td> <p> @customer.flightNo</p> </td>
-                    <td> <p> @customer.cId</p> </td>
+                
             </tr>
         }
         </table>
