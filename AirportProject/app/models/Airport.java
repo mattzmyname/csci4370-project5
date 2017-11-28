@@ -5,6 +5,8 @@ import play.data.validation.Constraints;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.HashSet;
 import java.util.Set;
 import java.sql.*;
@@ -14,6 +16,7 @@ public class Airport extends Model{
 
 
     @Id
+    @ManyToOne
     public Integer id;
     public String name;
     public String location;

@@ -1,4 +1,4 @@
-@(aps : List[Flight])
+@(flights : List[Flight])
 
 <html>
 
@@ -36,7 +36,7 @@
                 <th> Arrival City: </th>
                 <th> Gate ID: </th>
             </b> </tr>
-        @for(flight <- aps){
+        @for(flight <- flights){
             <tr>
                 <td> <a href="#">@flight.id</a> </td>
                 <td> <p> @flight.airlineId  </p> </td>

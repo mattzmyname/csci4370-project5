@@ -1,9 +1,9 @@
-@(gates : List[Gate])
+@(ps : List[Purchase])
 
 <html>
 
     <head>
-        <title>All Gates</title>
+        <title>All Purchase</title>
         <style>
         table, th, td {
             border: 1px solid black;
@@ -23,21 +23,20 @@
     </head>
     <body>
 
-        <h1>All Gates</h1> 
+        <h1>All Purchases</h1>
 
 
         <table style="width:100%">
             <tr> <b>
-                <th> Terminal ID: </th>
-                <th> Airline ID: </th>
-                <th> Airport ID: </th>
+                <th> Purchase ID: </th>
+                <th> Customer ID: </th>
+                <th> Flight ID: </th>
             </b></tr>
-        @for(gate <- gates){
+        @for(purchase <- ps){
             <tr>
-                <td> <a href="#">@gate.gateId</a> </td>
-                <td> <p> @gate.terminalId</p> </td>
-                <td> <p> @gate.airlineId</p> </td>
-                <td> <p> @gate.airportId</p> </td>
+                <td> <a href="#">@purchase.purchaseId</a> </td>
+                <td> <p> @purchase.customerId</p> </td>
+                <td> <p> @purchase.flightId</p> </td>
             </tr>
         }
         </table>

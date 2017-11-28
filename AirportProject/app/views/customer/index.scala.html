@@ -1,4 +1,4 @@
-@(aps : List[Customer])
+@(cust : List[Customer])
 
 <html>
 
@@ -27,20 +27,21 @@
 
                 <table style="width:100%">
             <tr>
+                <th><b> Customer ID: </b></th>
                 <th><b> First Name: </b></th>
                 <th><b> Last Name: </b></th>
                 <th><b> Customer City: </b></th>
                 <th><b> Flight Number: </b></th>
-                <th><b> CustomerID: </b></th>
+                
             </tr>
-        @for(customer <- aps){
+        @for(customer <- cust){
             <tr>
                     <td> <a href="#"> @customer.cId</a> </td>
                     <td> <p> @customer.fName</p> </td>  
                     <td> <p> @customer.lName</p> </td>
                     <td> <p> @customer.cCity</p> </td>
                     <td> <p> @customer.flightNo</p> </td>
-                    <td> <p> @customer.cId</p> </td>
+                
             </tr>
         }
         </table>

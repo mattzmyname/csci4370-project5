@@ -17,9 +17,9 @@ public class GateController extends Controller{
     FormFactory ff;
 
     public Result index(){
-        List<Gate> aps = Gate.find.all();
+        List<Gate> gates = Gate.find.all();
 
-        return ok(index.render(aps));
+        return ok(index.render(gates));
     }
 
     public Result create(){

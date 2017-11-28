@@ -1,5 +1,3 @@
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
 
 # --- !Ups
 
@@ -7,7 +5,8 @@ create table airline (
   id                            integer auto_increment not null,
   airline_name                  varchar(255),
   airport_id                    integer,
-  constraint pk_airline primary key (id)
+  constraint pk_airline primary key (id),
+  constraint fk_airport_id foreign key (airport_id) references airport(id)
 );
 
 create table airport (
@@ -34,7 +33,9 @@ create table flight (
   departure_city                varchar(255),
   arrival_city                  varchar(255),
   gate_id                       integer,
-  constraint pk_flight primary key (id)
+  constraint pk_flight primary key (id),
+  constraint fk_airline_id foreign key (airline_id) references airline(id),
+  constraint fk_gate_id foreign key (gate_id) references gate(gate_id)
 );
 
 create table gate (
@@ -42,7 +43,18 @@ create table gate (
   terminal_id                   integer,
   airline_id                    integer,
   airport_id                    integer,
-  constraint pk_gate primary key (gate_id)
+  constraint pk_gate primary key (gate_id),
+  constraint fk_airport_id foreign key (airport_id) references airport(id),
+  constraint fk_airline_id foreign key (airline_id) references airline(id)
+);
+
+create table purchase (
+  purchase_id                   integer auto_increment not null,
+  customer_id                   integer,
+  flight_id                     integer,
+  constraint pk_purchase primary key (purchase_id),
+  constraint fk_flight_id foreign key (flight_id) references flight(id),
+  constraint fk_customer_id foreign key (customer_id) references customer(cId)
 );
 
 
@@ -57,4 +69,6 @@ drop table if exists customer;
 drop table if exists flight;
 
 drop table if exists gate;
+
+drop table if exists purchase;
 
