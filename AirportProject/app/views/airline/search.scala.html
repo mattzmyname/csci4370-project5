@@ -1,6 +1,6 @@
 
-
-<!DOCTYPE html>
+@(airlineForm : Form[Airline])
+@import helper._
 <html>
 <head>
 	<title>Airline Search</title>
@@ -43,21 +43,27 @@
 <body>
 
 <h1>Airline Search</h1>
+
+@helper.form(action = routes.AirlineController.results()){
+    @select(airlineForm("selectField"), options(Seq("id", "airlineName","airportId")))
+    @helper.inputText(airlineForm("Search"))
+<input type ="Submit" value="Search">
+}
+<!--
 <h2><select>
   <option value="id">Airline ID</option>
   <option value="airline_name">Airline Name</option>
   <option value="airport_id">Airport ID</option>
+
 </select></h2>
+@helper.form(action = routes.AirlineController.results()){
+(id) =>
+    <input type="text" id="myInput" title="Type in a name">
 
-<h3><input type="text" id="myInput" title="Type in a name"></h3>
+<input type ="Submit" value="Search">
+}
+-->
 
 
-var attribute = document.getElementsByName("value")
-var target = document.getElementsByName("id")
-var database = "airline"
-
-
-<form action=controllers.AirportController.results(attribute,target,database)>
-  <input type="submit" value="submit." /> </form>
 </body>
 </html>

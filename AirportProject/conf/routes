@@ -20,12 +20,12 @@ GET     /airports/delete/:id        controllers.AirportController.destroy(id : I
 GET     /airlines                   controllers.AirlineController.index()
 GET     /airlines/create            controllers.AirlineController.create()
 GET     /airlines/search            controllers.AirlineController.search()
-GET     /airlines/results           controllers.AirlineController.results(arg1: String, arg2: String , arg3: String)
-GET     /airlines/:id               controllers.AirlineController.show(id : Integer)
-GET     /airlines/edit/:id          controllers.AirlineController.edit(id : Integer)
-POST    /airlines/edit              controllers.AirlineController.update()
+GET     /airlines/results           controllers.AirlineController.results()
+#GET     /airlines/:id               controllers.AirlineController.show(id : Integer)
+#GET     /airlines/edit/:id          controllers.AirlineController.edit(id : Integer)
+#POST    /airlines/edit              controllers.AirlineController.update()
 POST    /airlines/create            controllers.AirlineController.save()
-GET     /airlines/delete/:id        controllers.AirlineController.destroy(id : Integer)
+#GET     /airlines/delete/:id        controllers.AirlineController.destroy(id : Integer)
 
 
 
