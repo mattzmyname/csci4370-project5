@@ -6,7 +6,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava,PlayEbean)
 
 scalaVersion := "2.11.11"
 
-
+libraryDependencies += evolutions
 libraryDependencies += jdbc
 libraryDependencies += javaJdbc
 libraryDependencies += cache
