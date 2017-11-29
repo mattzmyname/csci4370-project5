@@ -30,6 +30,7 @@ public class CustomerController extends Controller{
     public Result save(){
         Form<Customer> customerForm = ff.form(Customer.class).bindFromRequest();
         Customer al =  customerForm.get();
+        System.out.println(customerForm.field("fName").value());
         al.save();
         return redirect(routes.CustomerController.index());
     }
