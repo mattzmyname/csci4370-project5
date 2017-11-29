@@ -28,10 +28,17 @@ public class PurchaseController extends Controller{
     }
 
     public Result save(){
-        Form<Purchase> PurchaseForm = ff.form(Purchase.class).bindFromRequest();
-        Purchase pl =  PurchaseForm.get();
-        pl.save();
-        return redirect(routes.PurchaseController.index());
+        Form<Purchase> form = ff.form(Purchase.class).bindFromRequest();
+
+        Purchase item;
+        if(form.hasErrors()){
+            return badRequest(create.render(form));
+        }else{
+            item = form.get();
+            item.save();
+            return redirect(routes.PurchaseController.index());
+        }
+
     }
 
     public Result edit(Integer id){

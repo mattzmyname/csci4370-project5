@@ -28,10 +28,17 @@ public class AirportController extends Controller{
     }
 
     public Result save(){
-        Form<Airport> airportForm = ff.form(Airport.class).bindFromRequest();
-        Airport ap =  airportForm.get();
-        ap.save();
-        return redirect(routes.AirportController.index());
+        Form<Airport> form = ff.form(Airport.class).bindFromRequest();
+
+        Airport al;
+        if(form.hasErrors()){
+            return badRequest(create.render(form));
+        }else{
+            al = form.get();
+            al.save();
+            return redirect(routes.AirportController.index());
+        }
+
     }
 
     public Result edit(Integer id){

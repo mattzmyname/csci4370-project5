@@ -28,10 +28,17 @@ public class GateController extends Controller{
     }
 
     public Result save(){
-        Form<Gate> gateForm = ff.form(Gate.class).bindFromRequest();
-        Gate ap =  gateForm.get();
-        ap.save();
-        return redirect(routes.GateController.index());
+        Form<Gate> form = ff.form(Gate.class).bindFromRequest();
+
+        Gate item;
+        if(form.hasErrors()){
+            return badRequest(create.render(form));
+        }else{
+            item = form.get();
+            item.save();
+            return redirect(routes.GateController.index());
+        }
+
     }
 
     public Result edit(Integer id){

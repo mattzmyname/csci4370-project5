@@ -30,23 +30,17 @@ public class AirlineController extends Controller{
     }
 
     public Result save(){
-        DynamicForm af = ff.form().bindFromRequest();
         Form<Airline> airlineForm = ff.form(Airline.class).bindFromRequest();
-
-        System.out.println(af.get("id"));
-        System.out.println(af.get("airlineId"));
 
         Airline al;
         if(airlineForm.hasErrors()){
             return badRequest(create.render(airlineForm));
         }else{
             al =  airlineForm.get();
-
             al.save();
             return redirect(routes.AirlineController.index());
         }
 
-        //return redirect(routes.AirlineController.index());
     }
 
     public Result edit(Integer id){
