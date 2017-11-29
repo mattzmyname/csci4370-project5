@@ -9,10 +9,10 @@
 
         <h1>Create a gate</h1>
             @helper.form(action = routes.GateController.save()){
-            @helper.inputText(gateForm("GateID"))
-            @helper.inputText(gateForm("Terminal ID"))
-            @helper.inputText(gateForm("AirlineID"))
-            @helper.inputText(gateForm("Airport ID"))
+            @helper.inputText(gateForm("gateId"))
+            @helper.inputText(gateForm("terminalId"))
+            @helper.inputText(gateForm("airlineId"))
+            @helper.inputText(gateForm("airportId"))
 
             <input type ="Submit" value="Create Gate">
         }

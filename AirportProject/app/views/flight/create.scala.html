@@ -9,13 +9,13 @@
 
         <h1>Create an airline</h1>
             @helper.form(action = routes.FlightController.save()){
-            @helper.inputText(flightForm("FlightID"))
-            @helper.inputText(flightForm("Airline ID"))
-            @helper.inputText(flightForm("Departure Time"))
-            @helper.inputText(flightForm("Arrival Time"))
-            @helper.inputText(flightForm("Departure City"))
-            @helper.inputText(flightForm("Arrival City"))
-            @helper.inputText(flightForm("Gate ID"))
+            @helper.inputText(flightForm("id"))
+            @helper.inputText(flightForm("airlineId"))
+            @helper.inputText(flightForm("departureTime"))
+            @helper.inputText(flightForm("arrivalTime"))
+            @helper.inputText(flightForm("departureCity"))
+            @helper.inputText(flightForm("arrivalCity"))
+            @helper.inputText(flightForm("gateId"))
             <input type ="Submit" value="Create Flight">
         }
 

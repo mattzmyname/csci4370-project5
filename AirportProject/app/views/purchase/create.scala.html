@@ -9,9 +9,9 @@
 
 <h1>Create a purchase</h1>
 @helper.form(action = routes.PurchaseController.save()){
-@helper.inputText(purchaseForm("Purchase ID"))
-@helper.inputText(purchaseForm("Customer ID"))
-@helper.inputText(purchaseForm("Flight ID"))
+@helper.inputText(purchaseForm("purchaseId"))
+@helper.inputText(purchaseForm("customerId"))
+@helper.inputText(purchaseForm("flightId"))
 
 <input type ="Submit" value="Create Purchase">
 }
