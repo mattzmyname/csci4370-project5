@@ -49,5 +49,13 @@ POST    /gates/edit              controllers.GateController.update()
 POST    /gates/create            controllers.GateController.save()
 GET     /gates/delete/:id        controllers.GateController.destroy(id : Integer)
 
+GET     /purchases                   controllers.PurchaseController.index()
+GET     /purchases/create            controllers.PurchaseController.create()
+GET     /purchases/:id               controllers.PurchaseController.show(id : Integer)
+GET     /purchases/edit/:id          controllers.PurchaseController.edit(id : Integer)
+POST    /purchases/edit              controllers.PurchaseController.update()
+POST    /purchases/create            controllers.PurchaseController.save()
+GET     /purchases/delete/:id        controllers.PurchaseController.destroy(id : Integer)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
