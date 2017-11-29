@@ -28,10 +28,17 @@ public class FlightController extends Controller{
     }
 
     public Result save(){
-        Form<Flight> flightForm = ff.form(Flight.class).bindFromRequest();
-        Flight ap =  flightForm.get();
-        ap.save();
-        return redirect(routes.FlightController.index());
+        Form<Flight> form = ff.form(Flight.class).bindFromRequest();
+
+        Flight item;
+        if(form.hasErrors()){
+            return badRequest(create.render(form));
+        }else{
+            item = form.get();
+            item.save();
+            return redirect(routes.FlightController.index());
+        }
+
     }
 
     public Result edit(Integer id){

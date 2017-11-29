@@ -1,6 +1,6 @@
 package controllers;
 
-import models.Airport;
+import models.Purchase;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
@@ -8,35 +8,35 @@ import play.mvc.Result;
 
 import java.util.List;
 import java.util.Set;
-import views.html.airport.*;
+import views.html.purchase.*;
 import javax.inject.Inject;
 
-public class AirportController extends Controller{
+public class PurchaseController extends Controller{
 
     @Inject
     FormFactory ff;
 
     public Result index(){
-        List<Airport> aps = Airport.find.all();
+        List<Purchase> ps = Purchase.find.all();
 
-        return ok(index.render(aps));
+        return ok(index.render(ps));
     }
 
     public Result create(){
-        Form<Airport> airportForm = ff.form(Airport.class);
-        return ok(create.render(airportForm));
+        Form<Purchase> purchaseForm = ff.form(Purchase.class);
+        return ok(create.render(purchaseForm));
     }
 
     public Result save(){
-        Form<Airport> form = ff.form(Airport.class).bindFromRequest();
+        Form<Purchase> form = ff.form(Purchase.class).bindFromRequest();
 
-        Airport al;
+        Purchase item;
         if(form.hasErrors()){
             return badRequest(create.render(form));
         }else{
-            al = form.get();
-            al.save();
-            return redirect(routes.AirportController.index());
+            item = form.get();
+            item.save();
+            return redirect(routes.PurchaseController.index());
         }
 
     }

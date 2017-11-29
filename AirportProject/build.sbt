@@ -6,9 +6,11 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava,PlayEbean)
 
 scalaVersion := "2.11.11"
 
-
+libraryDependencies += evolutions
 libraryDependencies += jdbc
 libraryDependencies += javaJdbc
 libraryDependencies += cache
 libraryDependencies += javaWs
+
 libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.36"
+libraryDependencies += "com.typesafe.play" %% "anorm" % "2.4.0"

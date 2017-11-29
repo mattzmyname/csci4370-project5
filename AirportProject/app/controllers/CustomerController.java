@@ -28,10 +28,17 @@ public class CustomerController extends Controller{
     }
 
     public Result save(){
-        Form<Customer> customerForm = ff.form(Customer.class).bindFromRequest();
-        Customer al =  customerForm.get();
-        al.save();
-        return redirect(routes.CustomerController.index());
+        Form<Customer> form = ff.form(Customer.class).bindFromRequest();
+
+        Customer item;
+        if(form.hasErrors()){
+            return badRequest(create.render(form));
+        }else{
+            item = form.get();
+            item.save();
+            return redirect(routes.CustomerController.index());
+        }
+
     }
 
     public Result edit(Integer id){

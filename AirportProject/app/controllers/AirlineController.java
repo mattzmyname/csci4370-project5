@@ -1,6 +1,8 @@
 package controllers;
 
+import com.avaje.ebean.Ebean;
 import models.Airline;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
@@ -29,9 +31,16 @@ public class AirlineController extends Controller{
 
     public Result save(){
         Form<Airline> airlineForm = ff.form(Airline.class).bindFromRequest();
-        Airline al =  airlineForm.get();
-        al.save();
-        return redirect(routes.AirlineController.index());
+
+        Airline al;
+        if(airlineForm.hasErrors()){
+            return badRequest(create.render(airlineForm));
+        }else{
+            al =  airlineForm.get();
+            al.save();
+            return redirect(routes.AirlineController.index());
+        }
+
     }
 
     public Result edit(Integer id){
@@ -50,5 +59,22 @@ public class AirlineController extends Controller{
         return TODO;
     }
 
+    public Result search()
+    {
+        Form<Airline> airlineForm = ff.form(Airline.class);
+        return ok(search.render(airlineForm));
+    }
+    public Result results()
+    {
+        DynamicForm af = ff.form().bindFromRequest();
+        String target = af.get("selectField");
+        String attr = af.get("Search");
 
+        List<Airline> search = Airline.find.where().eq( target,attr).findList();
+        /*Ebean.find(Airline.class)
+                .fetch(target)
+                .where().eq(target,attr).findList();*/
+
+        return ok(index.render(search));
+    }
 }

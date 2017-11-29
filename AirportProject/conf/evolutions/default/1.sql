@@ -45,6 +45,13 @@ create table gate (
   constraint pk_gate primary key (gate_id)
 );
 
+create table purchase (
+  purchase_id                   integer auto_increment not null,
+  customer_id                   integer,
+  flight_id                     integer,
+  constraint pk_purchase primary key (purchase_id)
+);
+
 
 # --- !Downs
 
@@ -57,4 +64,6 @@ drop table if exists customer;
 drop table if exists flight;
 
 drop table if exists gate;
+
+drop table if exists purchase;
 
