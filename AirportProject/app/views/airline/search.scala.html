@@ -43,34 +43,21 @@
 <body>
 
 <h1>Airline Search</h1>
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for type..." title="Type in a name">
+<h2><select>
+  <option value="id">Airline ID</option>
+  <option value="airline_name">Airline Name</option>
+  <option value="airport_id">Airport ID</option>
+</select></h2>
 
-<ul id="myUL">
-  <li><a href="#">Airline ID</a></li>
-  <li><a href="#">Airline Name</a></li>
-
-  <li><a href="#">Airport ID</a></li>
-</ul>
+<h3><input type="text" id="myInput" title="Type in a name"></h3>
 
 
-<script>
-function myFunction() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
+var attribute = document.getElementsByName("value")
+var target = document.getElementsByName("id")
+var database = "airline"
 
-        }
-    }
-}
-</script>
 
+<form action=controllers.AirportController.results(attribute,target,database)>
+  <input type="submit" value="submit." /> </form>
 </body>
 </html>

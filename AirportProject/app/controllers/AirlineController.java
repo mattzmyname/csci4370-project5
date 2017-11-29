@@ -49,6 +49,16 @@ public class AirlineController extends Controller{
     public Result show(Integer id){
         return TODO;
     }
-
+    public Result search()
+    {
+        return ok(search.render());
+    }
+    public Result results(String target,String attribute, String database)
+    {
+       return resultspage(target,attribute,database);
+    }
+    public Result resultspage (String target,String attribute, String database){
+        return ok(result.render(target,attribute,database));
+    }
 
 }
