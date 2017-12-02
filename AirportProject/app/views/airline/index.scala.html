@@ -1,48 +1,11 @@
-@(aps : List[Airline])
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, aps : List[Airline] )
 
-<html>
+@Main(page, isLoggedIn, userInfo) {
 
-    <head>
-        <title>All Airlines</title>
-        <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 5px;
-            text-align: left;    
-        }
-        table#t01 tr:nth-child(even) {
-            background-color: #eee;
-        }
-        table#t01 tr:nth-child(odd) {
-            background-color:#fff;
-        }
-    </style>
-        
-        
-    </head>
-    <body>
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+    @list(aps , page)
 
-        <h1>All Airlines</h1>
-
-
-        <table style="width:100%">
-             <tr> <b>
-                <th> Airline Name: </th>
-                <th> Airine ID: </th>
-                <th> Airport ID: </th>
-            </b> </tr>
-            
-        @for(airline <- aps){
-            <tr>
-                <td> <a href="#">@airline.airlineName</a> </td>
-                <td> <p> @airline.id</p> </td>
-                <td> <p> @airline.airportId</p> </td>
-            </tr>
-        }
-
-        </table>
-    </body>
-</html>
+}

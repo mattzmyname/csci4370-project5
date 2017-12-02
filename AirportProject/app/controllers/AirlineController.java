@@ -7,7 +7,7 @@ import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
-
+import play.mvc.Security;
 import java.util.List;
 import java.util.Set;
 import views.html.airline.*;
@@ -18,10 +18,15 @@ public class AirlineController extends Controller{
     @Inject
     FormFactory ff;
 
+  /**
+   * Provides the Profile page (only to authenticated users).
+   * @return The Profile page. 
+   */
+   @Security.Authenticated(Secured.class)
     public Result index(){
         List<Airline> aps = Airline.find.all();
 
-        return ok(index.render(aps));
+        return ok(index.render("All Airlines", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),aps));
     }
 
     public Result create(){
@@ -64,6 +69,7 @@ public class AirlineController extends Controller{
         Form<Airline> airlineForm = ff.form(Airline.class);
         return ok(search.render(airlineForm));
     }
+    @Security.Authenticated(Secured.class)
     public Result results()
     {
         DynamicForm af = ff.form().bindFromRequest();
@@ -75,6 +81,6 @@ public class AirlineController extends Controller{
                 .fetch(target)
                 .where().eq(target,attr).findList();*/
 
-        return ok(index.render(search));
+        return ok(index.render("Search Results", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),search));
     }
 }
