@@ -18,6 +18,13 @@ public class Airport extends Model{
     public String name;
     public String location;
 
+    @OneToMany(mappedBy = "airportId", cascade = CascadeType.ALL)
+    public List<Airline> airlineList;
+
+    @OneToMany(mappedBy = "airportId", cascade = CascadeType.ALL)
+    public List<Gate> GateList;
+
+
     public static Finder<Integer,Airport> find = new Finder<>(Airport.class);//Finder<PK,class>
 
     /* Methods using the h2 in-memory database
