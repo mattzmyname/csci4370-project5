@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Gate;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
@@ -8,6 +9,8 @@ import play.mvc.Result;
 
 import java.util.List;
 import java.util.Set;
+
+import play.mvc.Security;
 import views.html.gate.*;
 import javax.inject.Inject;
 
@@ -57,5 +60,23 @@ public class GateController extends Controller{
         return TODO;
     }
 
+    public Result search()
+    {
+        Form<Gate> airlineForm = ff.form(Gate.class);
+        return ok(search.render(airlineForm));
+    }
+    @Security.Authenticated(Secured.class)
+    public Result results()
+    {
+        DynamicForm af = ff.form().bindFromRequest();
+        String target = af.get("selectField");
+        String attr = af.get("Search");
 
+        List<Gate> search = Gate.find.where().eq( target,attr).findList();
+        /*Ebean.find(Airline.class)
+                .fetch(target)
+                .where().eq(target,attr).findList();*/
+
+        return ok(index.render(search));
+    }
 }

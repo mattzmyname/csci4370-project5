@@ -1,19 +1,11 @@
-@(airlineForm : Form[Airline])
-@import helper._
-<html>
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo,airlineForm : Form[Airline] )
 
-    <head>
-        <title>Create Airline</title>
-    </head>
-    <body>
+@Main(page, isLoggedIn, userInfo) {
 
-        <h1>Create an airline</h1>
-            @helper.form(action = routes.AirlineController.save()){
-            @helper.inputText(airlineForm("airlineName"), '_label -> "Airline Name")
-            @helper.inputText(airlineForm("id"), '_label -> "ID")
-            @helper.inputText(airlineForm("airportId"), '_label -> "Airport ID")
-            <input type ="Submit" value="Create Airline">
-        }
+@*
+* Get an `Html` object by calling the built-in Play welcome
+* template and passing a `String` message.
+*@
+@add(airlineForm , page)
 
-    </body>
-</html>
+}
