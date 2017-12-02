@@ -1,7 +1,11 @@
 package models;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import java.sql.*;
+import java.util.Map.Entry;
+
 
 /**
  * Provides an in-memory repository for UserInfo.
@@ -19,7 +23,11 @@ public class UserInfoDB {
    * @param password Their password. 
    */
   public static void addUserInfo(String name, String email, String password) {
-    userinfos.put(email, new UserInfo(name, email, password));
+    hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12))
+    userinfos.put(email, new UserInfo(name, email, hashedPassword));
+for (Entry<String,String> pair : userinfos.entrySet()){
+                //runSQLUpdate("If Not Exists(select * from userpwd where Username='"+pair.getKey()+"')Begin insert into userpwd (Username, passwordhash) values ('"+pair.getKey()+"','"+pair.getValue()+"')End");
+                runSQLUpdate("insert into user_info (Username, passwordhash)Select '"+pair.getKey()+"','"+pair.getValue()+"' Where not exists(select * from userpwd where Username='"+pair.getKey()+"')");
   }
   
   /**
@@ -28,6 +36,7 @@ public class UserInfoDB {
    * @return True if known user.
    */
   public static boolean isUser(String email) {
+    runSQLQuery("Select * from user_info");
     return userinfos.containsKey(email);
   }
 
@@ -37,6 +46,7 @@ public class UserInfoDB {
    * @return The UserInfo.
    */
   public static UserInfo getUser(String email) {
+    runSQLQuery("Select * from user_info");
     return userinfos.get((email == null) ? "" : email);
   }
 
@@ -55,4 +65,43 @@ public class UserInfoDB {
             &&
             getUser(email).getPassword().equals(password));
   }
+
+  public static void runSQLQuery(String cmd )
+    {
+      try{
+        Class.forName("com.mysql.jdbc.Driver");
+
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/air","root","root");
+        //here sonoo is the database name, root is the username and root is the password
+        Statement stmt=con.createStatement();
+        
+        ResultSet rs=stmt.executeQuery(cmd);
+
+        while(rs.next())
+        userinfos.put(rs.getString(1),rs.getString(2));
+        
+        
+        con.close();
+
+        }catch(Exception e){ System.out.println(e);}
+
+        }
+    
+    public static void runSQLUpdate(String cmd )
+    {
+      try{
+        Class.forName("com.mysql.jdbc.Driver");
+
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/air","root","root");
+        //here sonoo is the database name, root is the username and root is the password
+        Statement stmt=con.createStatement();
+        
+        int result=stmt.executeUpdate(cmd);  
+        System.out.println(result+" records affected"); 
+        con.close();
+
+        }catch(Exception e){ System.out.println(e);}
+
+        }
+    }
 }
