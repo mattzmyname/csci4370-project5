@@ -1,12 +1,19 @@
 package models;
 
+import com.avaje.ebean.Model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * A simple representation of a user. 
  * @author Philip Johnson
  */
-public class UserInfo {
+@Entity
+public class UserInfo extends Model {
  
   private String name;
+  @Id
   private String email;
   private String password;
   
@@ -16,11 +23,14 @@ public class UserInfo {
    * @param email The email.
    * @param password The password.
    */
+
   public UserInfo(String name, String email, String password) {
     this.name = name;
     this.email = email;
     this.password = password;
   }
+
+  public static Finder<Integer,UserInfo> find = new Model.Finder<>(UserInfo.class);//Finder<PK,class>
   
   /**
    * @return the name
