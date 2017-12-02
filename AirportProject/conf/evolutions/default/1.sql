@@ -52,6 +52,13 @@ create table purchase (
   constraint pk_purchase primary key (purchase_id)
 );
 
+create table user_info (
+  email                         varchar(255) not null,
+  name                          varchar(255),
+  password                      varchar(255),
+  constraint pk_user_info primary key (email)
+);
+
 
 # --- !Downs
 
@@ -66,4 +73,6 @@ drop table if exists flight;
 drop table if exists gate;
 
 drop table if exists purchase;
+
+drop table if exists user_info;
 
