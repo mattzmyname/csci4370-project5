@@ -4,9 +4,12 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.Security.*;
-import views.Security.formdata.LoginFormData;
+import views.Security.formdata.*;
 import views.html.*;
 import play.mvc.Security;
+import models.UserInfoDB;
+import models.UserInfo;
+import play.data.DynamicForm;
 
 /**
  * Implements the controllers for this application.
@@ -29,7 +32,30 @@ public class Application extends Controller {
     Form<LoginFormData> formData = Form.form(LoginFormData.class);
     return ok(Login.render("Login", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData));
   }
+  public Result createUser() {
+    Form<CreateUserFormData> formData = Form.form(CreateUserFormData.class);
+    return ok(createUser.render("Create User", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData));
+  }
+  public Result postcreateUser() {
 
+    // Get the submitted form data from the request object, and run validation.
+    Form<CreateUserFormData> form = Form.form(CreateUserFormData.class).bindFromRequest();
+
+    DynamicForm formData = Form.form().bindFromRequest();
+
+    String email = formData.get("email");
+    String name = formData.get("name");   
+    String password = formData.get("password");
+    if (UserInfoDB.isUser(email)) {
+      flash("error", "Email already exists.");
+      return badRequest(createUser.render("Create User", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), form));
+    }
+    else {
+      //email submitted is not already existing
+      UserInfoDB.addUserInfo(email, name, password);
+      return redirect(routes.Application.login());
+    }
+  }
   /**
    * Processes a login form submission from an unauthenticated user. 
    * First we bind the HTTP POST data to an instance of LoginFormData.

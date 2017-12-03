@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.sql.*;
 import java.util.Map.Entry;
+import java.util.List.*;
+import models.UserInfo;
 
 
 /**
@@ -22,13 +24,11 @@ public class UserInfoDB {
    * @param email Their email.
    * @param password Their password. 
    */
-  public static void addUserInfo(String name, String email, String password) {
-    hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12))
+  public static void addUserInfo(String email, String name, String password) {
+    String hashedPassword = models.BCrypt.hashpw(password, models.BCrypt.gensalt(12));
     userinfos.put(email, new UserInfo(name, email, hashedPassword));
-for (Entry<String,String> pair : userinfos.entrySet()){
-                //runSQLUpdate("If Not Exists(select * from userpwd where Username='"+pair.getKey()+"')Begin insert into userpwd (Username, passwordhash) values ('"+pair.getKey()+"','"+pair.getValue()+"')End");
-                runSQLUpdate("insert into user_info (Username, passwordhash)Select '"+pair.getKey()+"','"+pair.getValue()+"' Where not exists(select * from userpwd where Username='"+pair.getKey()+"')");
-  }
+    runSQLUpdate("Insert into user_info(email, name,password) values ('"+email+"','"+name+"','"+ hashedPassword+"')");
+     }
   
   /**
    * Returns true if the email represents a known user.
@@ -63,12 +63,13 @@ for (Entry<String,String> pair : userinfos.entrySet()){
             &&
             isUser(email) 
             &&
-            getUser(email).getPassword().equals(password));
+            models.BCrypt.checkpw(password, getUser(email).getPassword()));
   }
 
   public static void runSQLQuery(String cmd )
     {
       try{
+        userinfos.clear();
         Class.forName("com.mysql.jdbc.Driver");
 
         Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/air","root","root");
@@ -78,7 +79,7 @@ for (Entry<String,String> pair : userinfos.entrySet()){
         ResultSet rs=stmt.executeQuery(cmd);
 
         while(rs.next())
-        userinfos.put(rs.getString(1),rs.getString(2));
+        userinfos.put(rs.getString(1),new UserInfo(rs.getString(1),rs.getString(2),rs.getString(3)));
         
         
         con.close();
@@ -104,4 +105,4 @@ for (Entry<String,String> pair : userinfos.entrySet()){
 
         }
     }
-}
+  
