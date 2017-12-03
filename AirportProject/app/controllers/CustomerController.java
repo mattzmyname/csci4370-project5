@@ -18,24 +18,24 @@ public class CustomerController extends Controller{
 
     @Inject
     FormFactory ff;
-
+    @Security.Authenticated(Secured.class)
     public Result index(){
         List<Customer> cust = Customer.find.all();
 
-        return ok(index.render(cust));
+        return ok(index.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),cust));
     }
-
+    @Security.Authenticated(Secured.class)
     public Result create(){
         Form<Customer> customerForm = ff.form(Customer.class);
-        return ok(create.render(customerForm));
+        return ok(create.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),customerForm));
     }
-
+    @Security.Authenticated(Secured.class)
     public Result save(){
         Form<Customer> form = ff.form(Customer.class).bindFromRequest();
 
         Customer item;
         if(form.hasErrors()){
-            return badRequest(create.render(form));
+            return badRequest(create.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),form));
         }else{
             item = form.get();
             item.save();
@@ -59,11 +59,11 @@ public class CustomerController extends Controller{
     public Result show(Integer id){
         return TODO;
     }
-
+    @Security.Authenticated(Secured.class)
     public Result search()
     {
         Form<Customer> customerForm = ff.form(Customer.class);
-        return ok(search.render(customerForm));
+        return ok(search.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),customerForm));
     }
     @Security.Authenticated(Secured.class)
     public Result results()
@@ -77,6 +77,6 @@ public class CustomerController extends Controller{
                 .fetch(target)
                 .where().eq(target,attr).findList();*/
 
-        return ok(index.render(search));
+        return ok(index.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),search));
     }
 }

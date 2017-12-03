@@ -1,68 +1,11 @@
-@(apForm : Form[Airport])
-@import helper._
-<html>
-<head>
-    <title>Airline Search</title>
-    <style>
-	#myInput {
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, airportForm : Form[Airport] )
+
+@Main(page, isLoggedIn, userInfo) {
+
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+    @createhtml(airportForm)
+
 }
-
-#myUL {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#myUL li a {
-  border: 1px solid #ddd;
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block
-}
-
-#myUL li a:hover:not(.header) {
-  background-color: #eee;
-}
-</style>
-
-</head>
-
-
-<body>
-
-<h1>Airport Search</h1>
-
-@helper.form(action = routes.AirportController.results()){
-@select(apForm("selectField"), options(Seq("id", "name","location")))
-@helper.inputText(apForm("Search"))
-<input type ="Submit" value="Search">
-}
-<!--
-<h2><select>
-  <option value="id">Airline ID</option>
-  <option value="airline_name">Airline Name</option>
-  <option value="airport_id">Airport ID</option>
-
-</select></h2>
-@helper.form(action = routes.AirlineController.results()){
-(id) =>
-    <input type="text" id="myInput" title="Type in a name">
-
-<input type ="Submit" value="Search">
-}
--->
-
-
-</body>
-</html>
