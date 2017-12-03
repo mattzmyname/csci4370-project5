@@ -1,23 +1,11 @@
-@(flightForm : Form[Flight])
-@import helper._
-<html>
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo,FlightForm : Form[Flight] )
 
-    <head>  
-        <title>Create Flight</title>
-    </head>
-    <body>
+@Main(page, isLoggedIn, userInfo) {
 
-        <h1>Create an airline</h1>
-            @helper.form(action = routes.FlightController.save()){
-            @helper.inputText(flightForm("id"))
-            @helper.inputText(flightForm("airlineId"))
-            @helper.inputText(flightForm("departureTime"))
-            @helper.inputText(flightForm("arrivalTime"))
-            @helper.inputText(flightForm("departureCity"))
-            @helper.inputText(flightForm("arrivalCity"))
-            @helper.inputText(flightForm("gateId"))
-            <input type ="Submit" value="Create Flight">
-        }
+@*
+* Get an `Html` object by calling the built-in Play welcome
+* template and passing a `String` message.
+*@
+@createhtml(FlightForm)
 
-    </body>
-</html>
+}
