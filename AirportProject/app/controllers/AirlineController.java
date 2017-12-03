@@ -65,11 +65,11 @@ public class AirlineController extends Controller{
     public Result show(Integer id){
         return TODO;
     }
-
+    @Security.Authenticated(Secured.class)
     public Result search()
     {
         Form<Airline> airlineForm = ff.form(Airline.class);
-        return ok(search.render(airlineForm));
+        return ok(search.render("Create Airlines", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),airlineForm));
     }
     @Security.Authenticated(Secured.class)
     public Result results()

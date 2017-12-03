@@ -97,6 +97,6 @@ public class Application extends Controller {
    */
   @Security.Authenticated(Secured.class)
   public Result profile() {
-    return ok(index.render("Profile", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx())));
+    return ok(index.render("Index", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx())));
   }
 }
