@@ -13,6 +13,6 @@ public class Global extends GlobalSettings {
    * @param app The application.
    */
   public void onStart(Application app) {
-    UserInfoDB.addUserInfo("John Smith", "smith@example.com", "password");
+    UserInfoDB.addUserInfo( "smith@example.com","John Smith", "password");
   }
 }

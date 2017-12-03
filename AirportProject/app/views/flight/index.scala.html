@@ -1,54 +1,11 @@
-@(aps : List[Flight])
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo,ps : List[Flight] )
 
-<html>
+@Main(page, isLoggedIn, userInfo) {
 
-    <head>
-        <title>All Flights</title>
-        <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 5px;
-            text-align: left;    
-        }
-        table#t01 tr:nth-child(even) {
-            background-color: #eee;
-        }
-        table#t01 tr:nth-child(odd) {
-            background-color:#fff;
-        }
-    </style>
-    </head>
-    <body>
+@*
+* Get an `Html` object by calling the built-in Play welcome
+* template and passing a `String` message.
+*@
+@indexhtml(ps)
 
-        <h1>All Flights</h1>
-
-
- 
-        <table style="width:100%">
-            <tr> <b>
-                <th> Flight ID: </th>
-                <th> Airline ID: </th>
-                <th> Departure Time: </th>
-                <th> Arrival Time: </th>
-                <th> Departure City: </th>
-                <th> Arrival City: </th>
-                <th> Gate ID: </th>
-            </b> </tr>
-        @for(flight <- aps){
-            <tr>
-                <td> <a href="#">@flight.id</a> </td>
-                <td> <p> @flight.airlineId  </p> </td>
-                <td> <p> @flight.departureTime  </p> </td>
-                <td> <p> @flight.arrivalTime  </p> </td>
-                <td> <p> @flight.departureCity  </p> </td>
-                <td> <p> @flight.arrivalCity  </p> </td>
-                <td> <p> @flight.gateId  </p> </td>       
-        </tr>
-        }
-
-        </table>
-    </body>
-</html>
+}
