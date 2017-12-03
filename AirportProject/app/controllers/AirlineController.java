@@ -29,17 +29,19 @@ public class AirlineController extends Controller{
         return ok(index.render("All Airlines", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),aps));
     }
 
+    @Security.Authenticated(Secured.class)
     public Result create(){
         Form<Airline> airlineForm = ff.form(Airline.class);
-        return ok(create.render(airlineForm));
+        return ok(create.render("Create Airlines", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),airlineForm));
     }
 
+    @Security.Authenticated(Secured.class)
     public Result save(){
         Form<Airline> airlineForm = ff.form(Airline.class).bindFromRequest();
 
         Airline al;
         if(airlineForm.hasErrors()){
-            return badRequest(create.render(airlineForm));
+            return badRequest(create.render("All Airlines", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),airlineForm));
         }else{
             al =  airlineForm.get();
             al.save();
