@@ -20,6 +20,7 @@ public class Application extends Controller {
    * Provides the Index page.
    * @return The Index page. 
    */
+
   public Result index() {
     return ok(Index.render("Home", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx())));
   }

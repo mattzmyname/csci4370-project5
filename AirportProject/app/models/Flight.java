@@ -4,7 +4,8 @@ import com.avaje.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
-
+import javax.persistence.*;
+import java.util.List;
 @Entity
 public class Flight extends Model{
 
@@ -16,6 +17,8 @@ public class Flight extends Model{
     public String departureCity;
     public String arrivalCity;
     public Integer gateId;
+
+
 
     public static Finder<Integer,Flight> find = new Model.Finder<>(Flight.class);//Finder<PK,class>
 

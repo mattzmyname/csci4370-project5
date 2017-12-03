@@ -3,7 +3,8 @@ package models;
 import com.avaje.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+import javax.persistence.*;
+import java.util.List;
 @Entity
 public class Gate extends Model{
 
@@ -12,6 +13,8 @@ public class Gate extends Model{
     public Integer terminalId;
     public Integer airlineId;
     public Integer airportId;
+
+
 
     public static Finder<Integer,Gate> find = new Model.Finder<>(Gate.class);//Finder<PK,class>
 
