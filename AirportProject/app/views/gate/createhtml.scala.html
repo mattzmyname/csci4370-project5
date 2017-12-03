@@ -1,0 +1,21 @@
+@(gateForm : Form[Gate])
+@import helper._
+<html>
+
+    <head>
+        <title>Create Gate</title>
+    </head>
+    <body>
+
+        <h1>Create a gate</h1>
+            @helper.form(action = routes.GateController.save()){
+            @helper.inputText(gateForm("gateId"))
+            @helper.inputText(gateForm("terminalId"))
+            @helper.inputText(gateForm("airlineId"))
+            @helper.inputText(gateForm("airportId"))
+
+            <input type ="Submit" value="Create Gate">
+        }
+
+    </body>
+</html>

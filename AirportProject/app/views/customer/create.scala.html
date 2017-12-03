@@ -1,22 +1,11 @@
-@(customerForm : Form[Customer])
-@import helper._
-<html>
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, aps : Form[Customer] )
 
-    <head>
-        <title>Create Customer</title>
-    </head>
-    <body>
+@Main(page, isLoggedIn, userInfo) {
 
-        <h1>Create an customer</h1> 
-            @helper.form(action = routes.CustomerController.save()){
-            @helper.inputText(customerForm("cId"))
-            @helper.inputText(customerForm("fName"))
-            @helper.inputText(customerForm("lName"))
-            @helper.inputText(customerForm("cCity"))
-            @helper.inputText(customerForm("flightNo"))
-           
-            <input type ="Submit" value="Create Customer">
-        }
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+    @createhtml(aps)
 
-    </body>
-</html>
+}

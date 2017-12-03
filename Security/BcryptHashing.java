@@ -19,8 +19,8 @@ public class BcryptHashing
 	
     public static void main(String[] args) throws NoSuchAlgorithmException, FileNotFoundException, IOException
     {
-    	//runSQLQuery("Select * from userpwd");
-    	pullUserDB();
+    	runSQLQuery("Select * from userpwd");
+    	//pullUserDB();
     	//sample
     	/*
     	String username = "richard";

@@ -1,21 +1,11 @@
-@(gateForm : Form[Gate])
-@import helper._
-<html>
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo,GateForm : Form[Gate] )
 
-    <head>
-        <title>Create Gate</title>
-    </head>
-    <body>
+@Main(page, isLoggedIn, userInfo) {
 
-        <h1>Create a gate</h1>
-            @helper.form(action = routes.GateController.save()){
-            @helper.inputText(gateForm("gateId"))
-            @helper.inputText(gateForm("terminalId"))
-            @helper.inputText(gateForm("airlineId"))
-            @helper.inputText(gateForm("airportId"))
+@*
+* Get an `Html` object by calling the built-in Play welcome
+* template and passing a `String` message.
+*@
+@createhtml(GateForm)
 
-            <input type ="Submit" value="Create Gate">
-        }
-
-    </body>
-</html>
+}

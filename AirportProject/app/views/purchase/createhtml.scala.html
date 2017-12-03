@@ -1,0 +1,20 @@
+@(purchaseForm : Form[Purchase])
+@import helper._
+<html>
+
+<head>
+    <title>Create Purchase</title>
+</head>
+<body>
+
+<h1>Create a purchase</h1>
+@helper.form(action = routes.PurchaseController.save()){
+@helper.inputText(purchaseForm("purchaseId"))
+@helper.inputText(purchaseForm("customerId"))
+@helper.inputText(purchaseForm("flightId"))
+
+<input type ="Submit" value="Create Purchase">
+}
+
+</body>
+</html>

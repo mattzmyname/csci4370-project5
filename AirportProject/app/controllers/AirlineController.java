@@ -7,7 +7,7 @@ import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
-
+import play.mvc.Security;
 import java.util.List;
 import java.util.Set;
 import views.html.airline.*;
@@ -18,23 +18,30 @@ public class AirlineController extends Controller{
     @Inject
     FormFactory ff;
 
+  /**
+   * Provides the Profile page (only to authenticated users).
+   * @return The Profile page. 
+   */
+   @Security.Authenticated(Secured.class)
     public Result index(){
         List<Airline> aps = Airline.find.all();
 
-        return ok(index.render(aps));
+        return ok(index.render("All Airlines", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),aps));
     }
 
+    @Security.Authenticated(Secured.class)
     public Result create(){
         Form<Airline> airlineForm = ff.form(Airline.class);
-        return ok(create.render(airlineForm));
+        return ok(create.render("Create Airlines", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),airlineForm));
     }
 
+    @Security.Authenticated(Secured.class)
     public Result save(){
         Form<Airline> airlineForm = ff.form(Airline.class).bindFromRequest();
 
         Airline al;
         if(airlineForm.hasErrors()){
-            return badRequest(create.render(airlineForm));
+            return badRequest(create.render("All Airlines", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),airlineForm));
         }else{
             al =  airlineForm.get();
             al.save();
@@ -58,12 +65,13 @@ public class AirlineController extends Controller{
     public Result show(Integer id){
         return TODO;
     }
-
+    @Security.Authenticated(Secured.class)
     public Result search()
     {
         Form<Airline> airlineForm = ff.form(Airline.class);
-        return ok(search.render(airlineForm));
+        return ok(search.render("Create Airlines", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),airlineForm));
     }
+    @Security.Authenticated(Secured.class)
     public Result results()
     {
         DynamicForm af = ff.form().bindFromRequest();
@@ -75,6 +83,6 @@ public class AirlineController extends Controller{
                 .fetch(target)
                 .where().eq(target,attr).findList();*/
 
-        return ok(index.render(search));
+        return ok(index.render("Search Results", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),search));
     }
 }

@@ -1,20 +1,11 @@
-@(purchaseForm : Form[Purchase])
-@import helper._
-<html>
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo,purchaseForm : Form[Purchase] )
 
-<head>
-    <title>Create Purchase</title>
-</head>
-<body>
+@Main(page, isLoggedIn, userInfo) {
 
-<h1>Create a purchase</h1>
-@helper.form(action = routes.PurchaseController.save()){
-@helper.inputText(purchaseForm("purchaseId"))
-@helper.inputText(purchaseForm("customerId"))
-@helper.inputText(purchaseForm("flightId"))
+@*
+* Get an `Html` object by calling the built-in Play welcome
+* template and passing a `String` message.
+*@
+@createhtml(purchaseForm)
 
-<input type ="Submit" value="Create Purchase">
 }
-
-</body>
-</html>

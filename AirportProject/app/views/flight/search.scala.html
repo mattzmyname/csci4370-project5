@@ -1,0 +1,11 @@
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo,FlightForm : Form[Flight] )
+
+@Main(page, isLoggedIn, userInfo) {
+
+@*
+* Get an `Html` object by calling the built-in Play welcome
+* template and passing a `String` message.
+*@
+@searchhtml(FlightForm)
+
+}
