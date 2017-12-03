@@ -22,12 +22,12 @@ public class CustomerController extends Controller{
     public Result index(){
         List<Customer> cust = Customer.find.all();
 
-        return ok(index.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),cust));
+        return ok(index.render("All Customers", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),cust));
     }
     @Security.Authenticated(Secured.class)
     public Result create(){
         Form<Customer> customerForm = ff.form(Customer.class);
-        return ok(create.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),customerForm));
+        return ok(create.render("All Customers", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),customerForm));
     }
     @Security.Authenticated(Secured.class)
     public Result save(){
@@ -35,7 +35,7 @@ public class CustomerController extends Controller{
 
         Customer item;
         if(form.hasErrors()){
-            return badRequest(create.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),form));
+            return badRequest(create.render("All Customers", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),form));
         }else{
             item = form.get();
             item.save();
@@ -63,7 +63,7 @@ public class CustomerController extends Controller{
     public Result search()
     {
         Form<Customer> customerForm = ff.form(Customer.class);
-        return ok(search.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),customerForm));
+        return ok(search.render("All Customers", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),customerForm));
     }
     @Security.Authenticated(Secured.class)
     public Result results()
@@ -77,6 +77,6 @@ public class CustomerController extends Controller{
                 .fetch(target)
                 .where().eq(target,attr).findList();*/
 
-        return ok(index.render("All Airports", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),search));
+        return ok(index.render("All Customers", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),search));
     }
 }
