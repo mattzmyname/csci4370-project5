@@ -3,9 +3,9 @@ package models;
 import com.avaje.ebean.Model;
 import play.data.validation.Constraints;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.sql.*;
 
@@ -17,6 +17,9 @@ public class Airport extends Model{
     public Integer id;
     public String name;
     public String location;
+
+    @OneToMany(mappedBy = "airportId", cascade = CascadeType.ALL)
+    public List<Airline> airlineList;
 
     public static Finder<Integer,Airport> find = new Finder<>(Airport.class);//Finder<PK,class>
 

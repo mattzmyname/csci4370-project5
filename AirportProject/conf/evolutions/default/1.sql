@@ -6,7 +6,7 @@
 create table airline (
   id                            integer auto_increment not null,
   airline_name                  varchar(255),
-  airport_id                    integer,
+  airportid                     integer not null,
   constraint pk_airline primary key (id)
 );
 
@@ -28,7 +28,7 @@ create table customer (
 
 create table flight (
   id                            integer auto_increment not null,
-  airline_id                    integer,
+  airlineid                     integer not null,
   departure_time                datetime(6),
   arrival_time                  datetime(6),
   departure_city                varchar(255),
@@ -40,7 +40,7 @@ create table flight (
 create table gate (
   gate_id                       integer auto_increment not null,
   terminal_id                   integer,
-  airline_id                    integer,
+  airlineid                     integer not null,
   airport_id                    integer,
   constraint pk_gate primary key (gate_id)
 );
@@ -59,8 +59,26 @@ create table user_info (
   constraint pk_user_info primary key (email)
 );
 
+alter table airline add constraint fk_airline_airportid foreign key (airportid) references airport (id) on delete restrict on update restrict;
+create index ix_airline_airportid on airline (airportid);
+
+alter table flight add constraint fk_flight_airlineid foreign key (airlineid) references airline (id) on delete restrict on update restrict;
+create index ix_flight_airlineid on flight (airlineid);
+
+alter table gate add constraint fk_gate_airlineid foreign key (airlineid) references airline (id) on delete restrict on update restrict;
+create index ix_gate_airlineid on gate (airlineid);
+
 
 # --- !Downs
+
+alter table airline drop foreign key fk_airline_airportid;
+drop index ix_airline_airportid on airline;
+
+alter table flight drop foreign key fk_flight_airlineid;
+drop index ix_flight_airlineid on flight;
+
+alter table gate drop foreign key fk_gate_airlineid;
+drop index ix_gate_airlineid on gate;
 
 drop table if exists airline;
 

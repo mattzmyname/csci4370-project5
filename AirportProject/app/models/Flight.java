@@ -11,6 +11,8 @@ public class Flight extends Model{
 
     @Id
     public Integer id;
+    @ManyToOne(optional = false,targetEntity= Airline.class)
+    @JoinColumn(name="airlineId", referencedColumnName="id")
     public Integer airlineId;
     public Date departureTime;
     public Date arrivalTime;

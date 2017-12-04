@@ -11,7 +11,11 @@ public class Gate extends Model{
     @Id
     public Integer gateId;
     public Integer terminalId;
+
+    @ManyToOne(optional = false,targetEntity= Airline.class)
+    @JoinColumn(name="airlineId", referencedColumnName="id")
     public Integer airlineId;
+
     public Integer airportId;
 
 
